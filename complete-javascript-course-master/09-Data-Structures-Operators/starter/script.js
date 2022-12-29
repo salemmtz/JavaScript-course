@@ -2,22 +2,22 @@
 
 ////////// Ehance object literals ///////////////
 
-// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-// const hours = {
-//   [weekdays[3]]: {
-//     open: 12,
-//     close: 22,
-//   },
-//   [weekdays[4]]: {
-//     open: 11,
-//     close: 23,
-//   },
-//   [`day-${2 + 4}`]: {
-//     open: 0, // Open 24 hours
-//     close: 24,
-//   },
-// };
+const hours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [`day-${2 + 4}`]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
 
 //////////////////////////////////////////////////////
 
@@ -561,3 +561,242 @@ const game = {
 // console.log(rest.get(arr));
 
 ////////////////// Maps Iteration //////////////////
+
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct 🎉'],
+//   [false, 'Try again!'],
+// ]);
+// console.log(question);
+
+// /// Convert object to map
+// console.log(Object.entries(hours));
+// const hoursMap = new Map(Object.entries(hours));
+// console.log(hoursMap);
+
+// /// QuizApp
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// }
+
+// const answer = Number(prompt('Your answer: '));
+// console.log(answer);
+
+// console.log(question.get(question.get('correct') === answer));
+
+// /// Convert map to array
+// console.log([...question]);
+// // console.log(question.entries());
+// console.log([...question.keys()]);
+// console.log([...question.values()]);
+
+///////////////////// Coding challene #3 //////////////////
+
+// const gameEvents = new Map([
+//   [17, '⚽ GOAL'],
+//   [36, '🔃 Substitution'],
+//   [47, '⚽ GOAL'],
+//   [61, '🔃 Substitution'],
+//   [64, '🟨 Yellow card'],
+//   [69, '🟥 Red card'],
+//   [70, '🔃 Substitution'],
+//   [72, '🔃 Substitution'],
+//   [76, '⚽ GOAL'],
+//   [80, '⚽ GOAL'],
+//   [92, '🟨 Yellow card'],
+// ]);
+
+// // 1.
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
+
+// // 2.
+// gameEvents.delete(64);
+// console.log(gameEvents);
+
+// // 3.
+// console.log(`An event happened, on
+// average, every ${90 / gameEvents.size} minutes`);
+
+// const time = [...gameEvents.keys()].pop();
+// console.log(`An event happened, on
+// average, every ${time / gameEvents.size} minutes`);
+
+// // 4.
+// for (const [min, event] of gameEvents) {
+//   const time =
+//     min <= 45 ? '[FIRST HALF]' : min <= 90 ? '[SECOND HALF]' : '[EXTRA TIME]';
+//   console.log(`${time} ${min}: ${event}`);
+// }
+
+///////////////////// Working with strings ///////////////
+
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
+
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[2]);
+// console.log('8737'[0]);
+
+// console.log(airline.length);
+// console.log('8737'.length);
+
+// console.log(airline.indexOf('r'));
+// console.log(airline.lastIndexOf('r'));
+
+// console.log(airline.slice(4));
+// console.log(airline.slice(4, 7));
+
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+// console.log(airline.slice(-2));
+// console.log(airline.slice(1, -2));
+
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle seatss
+//   const s = seat.slice(-1);
+//   if (s === 'B' || s === 'E') console.log("You've got the middle seat :(");
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3C');
+
+// console.log(new String('Salem'));
+// console.log(typeof new String('Salem'));
+
+// console.log(typeof new String('Salem').slice(1));
+
+////////////////// Working with strings Pt. 2 ////////////
+
+// const airline = 'TAP Air Portugal';
+
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+
+// /// Fix capitalization in name
+// const passenger = 'sAlEM';
+// const passengerLower = passenger.toLowerCase();
+// const passengerCorrect =
+//   passengerLower[0].toUpperCase() + passengerLower.slice(1);
+
+// console.log(passengerCorrect);
+
+// /// Comparing email
+// const email = 'hello@salem.com';
+// const loginEmail = ' Hello@Salem.Com \n';
+
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
+// console.log(email === normalizedEmail);
+
+// /// Replacing
+// const priceGB = '288,97£';
+// const priceUS = priceGB.replace('£', '$').replace(',', '.');
+// console.log(priceUS);
+
+// const announcement = `All passengers come to barding door 23. Boarding door 23!`;
+
+// // console.log(announcement.replaceAll('door', 'gate'));
+// console.log(announcement.replace(/door/g, 'gate')); /// /door/ makes it a regular expression 'g' makes it global
+
+// /// Booleans
+// const plane = 'Airbus A320neo';
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+// console.log(plane.startsWith('Airb'));
+
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of the NEW Airbus family');
+// }
+
+// /// Practice exercise
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase();
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log('You are NOT allowed on board');
+//   } else {
+//     console.log('Welcome aboard');
+//   }
+// };
+
+// checkBaggage('I have a laptop, some food and a pocket Knife');
+// checkBaggage('Socks and camera');
+// checkBaggage('Got some snacks and a gun for protection');
+
+////////////////// Working with strings Pt. 3 ////////////
+
+// /// Split and join
+// console.log('a+very+nice+string'.split('+'));
+// console.log('Salem Martinez'.split(' '));
+
+// const [firstName, lastName] = 'Salem Martinez'.split(' ');
+// console.log(firstName, lastName);
+
+// const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+// console.log(newName);
+
+// const capitalizeName = function (name) {
+//   const names = name.split(' ');
+//   const namesUpper = [];
+
+//   for (const n of names) {
+//     namesUpper.push(n[0].toUpperCase() + n.slice(1));
+//   }
+//   console.log(namesUpper.join(' '));
+// };
+
+// capitalizeName('jessica and smith david');
+// capitalizeName('salem Martinez');
+
+// /// Padding
+// const message = 'Go to gate 23!';
+// console.log(message.padStart(25, '+')); // length should be 25, '+' will be added at the start
+// console.log('Salem'.padStart(25, '+').padEnd(30, '+'));
+
+// const maskCreditCard = function (number) {
+//   const str = number + ''; // converted to string
+//   const last = str.slice(-4);
+//   return last.padStart(str.length, '*');
+// };
+
+// console.log(maskCreditCard(6435862));
+// console.log(maskCreditCard(643586436536432));
+// console.log(maskCreditCard('64435675635862'));
+
+// // Repeat
+// const message2 = 'Bad weather... All Departures Delayed...';
+// console.log(message2.repeat(5));
+
+// const planesInLine = function (n) {
+//   console.log(`There are ${n} planes in  line ${'🛫'.repeat(n)}`);
+// };
+
+// planesInLine(5);
+
+///////////////////// Coding challene #4 //////////////////
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+const button = document.querySelector('button');
+
+const result = () => {
+  const text = document.querySelector('textarea').value;
+  const words = text.toLowerCase().split('\n');
+
+  for (const [i, word] of words.entries()) {
+    const [first, second] = word.trim().split('_');
+    const newStr = [first, second[0].toUpperCase() + second.slice(1)].join('');
+    console.log(`${newStr.padEnd(20, ' ')} ${'✅'.repeat(i + 1)}`);
+  }
+};
+
+button.addEventListener('click', result);
