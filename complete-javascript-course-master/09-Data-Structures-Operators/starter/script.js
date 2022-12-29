@@ -771,7 +771,7 @@ const game = {
 // console.log(maskCreditCard(643586436536432));
 // console.log(maskCreditCard('64435675635862'));
 
-// // Repeat
+// /// Repeat
 // const message2 = 'Bad weather... All Departures Delayed...';
 // console.log(message2.repeat(5));
 
