@@ -2,9 +2,9 @@
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
-// BANKIST APP
+/// BANKIST APP
 
-/////////////////// Data
+////////////////// Data
 const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -61,11 +61,11 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-////////////// Functions
+/////////////// Functions
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  //making a copy of the array with slice()
+  /// making a copy of the array with slice()
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
   movs.forEach(function (mov, i) {
@@ -242,7 +242,7 @@ btnSort.addEventListener('click', function (e) {
 
 // let arr = ['a', 'b', 'c', 'd', 'e'];
 
-// // SLICE
+// /// SLICE
 // console.log(arr.slice(2));
 // console.log(arr.slice(2, 4));
 // console.log(arr.slice(-2));
@@ -250,7 +250,7 @@ btnSort.addEventListener('click', function (e) {
 // console.log(arr.slice());
 // console.log([...arr]);
 
-// // SPLICE
+// /// SPLICE
 // // splice mutates the array -  deletes the extracted part of the array
 // // console.log(arr.splice(2));
 // arr.splice(-1);
@@ -259,33 +259,33 @@ btnSort.addEventListener('click', function (e) {
 
 // // mdn array documentation
 
-// // REVERSE - mutates the array
+// /// REVERSE - mutates the array
 // arr = ['a', 'b', 'c', 'd', 'e'];
 // const arr2 = ['j', 'i', 'h', 'g', 'f'];
 // console.log(arr2.reverse());
 // console.log(arr2);
 
-// // CONCAT
+// /// CONCAT
 // const letters = arr.concat(arr2);
 // console.log(letters);
 // console.log([...arr, ...arr2]);
 
-// // JOIN
+// /// JOIN
 // console.log(letters.join(' - '));
 
-// // AT METHOD
+// /// AT METHOD
 // const arr = [23, 11, 64];
 // console.log(arr[0]);
 // console.log(arr.at(0));
 
-// // Getting last array element
+// /// Getting last array element
 // console.log(arr[arr.length - 1]);
 // console.log(arr.slice(-1)[0]);
 // console.log(arr.at(-1));
 
 // console.log('jonas'.at(0));
 
-//////// LOOPING ARRAYS FOR EACH /////////
+////// LOOPING ARRAYS FOR EACH /////////
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log('--- FOR OF ---');
@@ -315,9 +315,9 @@ btnSort.addEventListener('click', function (e) {
 //   }
 // });
 
-//////////////////////// FOREACH WITH MAPS AND SETS ////////////////////
+//////////////////////// FOREACH WITH MAPS AND SETS /////////////////////
 
-// // Map
+// /// Map
 // const currencies = new Map([
 //   ['USD', 'United States dollar'],
 //   ['EUR', 'Euro'],
@@ -328,7 +328,7 @@ btnSort.addEventListener('click', function (e) {
 //   console.log(`${key} : ${value}`);
 // });
 
-// // Set
+// /// Set
 // const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
 // console.log(currenciesUnique);
 // currenciesUnique.forEach(function (value, _, set) {
@@ -336,10 +336,10 @@ btnSort.addEventListener('click', function (e) {
 // });
 
 /////////////////// CODING CHALLENGE #1 ////////////////////
-// TEST DATA 1
+// /// TEST DATA 1
 // const dogsJulia = [3, 5, 2, 12, 7];
 // const dogsKate = [4, 1, 15, 8, 3];
-// TEST DATA 2
+// /// TEST DATA 2
 // const dogsJulia = [9, 16, 6, 8, 3];
 // const dogsKate = [10, 5, 6, 1, 4];
 
@@ -359,7 +359,7 @@ btnSort.addEventListener('click', function (e) {
 
 //////////////////////// DATA TRANSFORMATIONS ////////////////////
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-// //////// MAP METHOD ////////
+// ///////// MAP METHOD /////////
 // const eurToUsd = 1.1;
 
 // // const movementsUSD = movements.map(function (mov) {
@@ -383,7 +383,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // );
 // console.log(movementsDescriptions);
 
-///////// FILTER METHOD //////////
+///////// FILTER METHOD ////////////
 
 // const deposits = movements.filter(function (mov) {
 //   return mov > 0;
@@ -398,15 +398,15 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // const withdrawals = movements.filter(mov => mov <= 0);
 // console.log(withdrawals);
 
-///////// REDUCE METHOD //////////
+///////// REDUCE METHOD /////////
 
 // console.log(movements);
 
-// // accumulator -> snowball
+// /// accumulator -> snowball
 // // const balance = movements.reduce(function (acc, curr, i, arr) {
 // //   console.log(`Iteration ${i}: ${acc}`);
 // //   return acc + curr;
-// // }, 0); //initial value of the accumulator in the first loop iteration
+// // }, 0); ///initial value of the accumulator in the first loop iteration
 
 // const balance = movements.reduce((acc, curr) => acc + curr, 0);
 // console.log(balance);
@@ -415,7 +415,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // for (const mov of movements) balance2 += mov;
 // console.log(balance2);
 
-// // Maximun value
+// /// Maximun value
 // // const max = movements.reduce((acc, mov) => {
 // //   if (acc > mov) return acc;
 // //   else return mov;
@@ -447,7 +447,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // calcAverageHumanAge(data1);
 // calcAverageHumanAge(data2);
 
-/////////////////// THE MAGIC OF CHANING METHODS ///////////
+////////////////// THE MAGIC OF CHANING METHODS ////////////
 
 // const eurToUsd = 1.1;
 // const totalDepositsUSD = movements
@@ -460,7 +460,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   .reduce((acc, curr) => acc + curr, 0);
 // console.log(totalDepositsUSD);
 
-/////////////////// CODING CHALLENGE #3 ////////////////////
+///////////////////// CODING CHALLENGE #3 /////////////////////
 // // TEST DATA 1
 // const data1 = [5, 2, 4, 1, 15, 8, 3];
 // // TEST DATA 2
@@ -478,9 +478,9 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // calcAverageHumanAge(data1);
 // calcAverageHumanAge(data2);
 
-///////////////////////// FIND METHOD //////////////////////
+//////////////////////// FIND METHOD /////////////////////
 
-// // returns first element of the array that meets the condition
+// /// returns first element of the array that meets the condition
 // const firstWithdrawal = movements.find(mov => mov < 0);
 // console.log(movements);
 // console.log(firstWithdrawal);
@@ -496,26 +496,26 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // console.log(accountFor);
 
-//////////////////// SOME AND EVERY ////////////////////
+////////////////// SOME AND EVERY //////////////////
 
 // console.log(movements);
-// // test for EQUALITY
+// /// test for EQUALITY
 // console.log(movements.includes(-130));
-// // SOME: can check for a CONDITION
+// /// SOME: can check for a CONDITION
 // const anyDeposits = movements.some(mov => mov > 1500);
 // console.log(anyDeposits);
 
-// // EVERY
+// /// EVERY
 // console.log(movements.every(mov => mov > 0));
 // console.log(account4.movements.every(mov => mov > 0));
 
-// // Separate callback
+// /// Separate callback
 // const deposit = mov => mov > 0;
 // console.log(movements.some(deposit));
 // console.log(movements.every(deposit));
 // console.log(movements.filter(deposit));
 
-//////////////////// FLAT AND FLATMAP ////////////////////
+////////////////// FLAT AND FLATMAP //////////////////
 
 // const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
 // console.log(arr.flat());
@@ -531,32 +531,32 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // // const overalBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
 // // console.log(overallBalance);
 
-// // FLAT
+// /// FLAT
 // // const overalBalance = accounts
 // //   .map(acc => acc.movements)
 // //   .flat()
 // //   .reduce((acc, mov) => acc + mov, 0);
 // // console.log(overalBalance);
 
-// // FLATMAP -> goes just one level deep
+// /// FLATMAP -> goes just one level deep
 // const overalBalance = accounts
 //   .flatMap(acc => acc.movements)
 //   .reduce((acc, mov) => acc + mov, 0);
 // console.log(overalBalance);
 
 ///////////////////// SORTING ARRAYS ////////////////////
-// // Strings
+// /// Strings
 // const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
 // // mutates the array
 // console.log(owners.sort());
 // console.log(owners);
 
-// // Numbers
+// /// Numbers
 // console.log(movements);
 // // return <0 A, B (keep order)
 // // return >0 B, A (switch order)
 
-// // ASCENDING
+// /// ASCENDING
 // // movements.sort((a, b) => {
 // //   if (a > b) return 1;
 // //   if (a < b) return -1;
@@ -571,16 +571,16 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // movements.sort((a, b) => b - a);
 // console.log(movements);
 
-/////////// MORE WAYS TO CREATING AND FILLING ARRAYS ///////
+//////////// MORE WAYS TO CREATING AND FILLING ARRAYS /////////
 // const arr = [1, 2, 3, 4, 5, 6, 7];
 // console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
-// // Empty arrays + fill method
+// /// Empty arrays + fill method
 // const x = new Array(7);
 // console.log(x);
 
 // // console.log(x.map(() => 5));
-// // mutates the array
+// /// mutates the array
 // // x.fill(5);
 // x.fill(5, 3, 5);
 // console.log(x);
@@ -588,11 +588,11 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // arr.fill(23, 2, 6);
 // console.log(arr);
 
-// // Array.from
+// /// Array.from
 // const y = Array.from({ length: 7 }, () => 1);
 // console.log(y);
 
-// // current element in the callback fn defining it as _ beacuse is not in use
+// /// current element in the callback fn defining it as _ beacuse is not in use
 // const z = Array.from({ length: 7 }, (_, i) => i + 1);
 // console.log(z);
 
@@ -606,7 +606,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
 // });
 
-/////////////////// Array Methods Practice ////////////////
+////////////////// Array Methods Practice ////////////////
 
 // // 1.
 // const bankDepositSum = accounts
