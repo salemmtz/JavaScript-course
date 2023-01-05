@@ -352,3 +352,6 @@ console.log(2 ** 53 - 1);
 console.log(Number.MAX_SAFE_INTEGER); /// maximun number without stopping being accurate
 
 console.log(432123456789876543212345678765432123n);
+
+/// Operations
+console.log(43424353245123n * 543234456786543n);
