@@ -1,32 +1,32 @@
 'use strict';
 
-// ///////////////////////// DEFAULT ///////////////////////////////
-// const bookings = [];
+/////////////////////////// DEFAULT //////////////////////////////
+const bookings = [];
 
-// const createBooking = function (
-//   flightNum,
-//   numPassengers = 1,
-//   price = 199 * numPassengers
-// ) {
-//   // // ES5
-//   //   numPassengers = numPassengers || 1;
-//   //   price = price || 199;
+const createBooking = function (
+  flightNum,
+  numPassengers = 1,
+  price = 199 * numPassengers
+) {
+  /// ES5
+  //   numPassengers = numPassengers || 1;
+  //   price = price || 199;
 
-//   const booking = {
-//     flightNum,
-//     numPassengers,
-//     price,
-//   };
-//   console.log(booking);
-//   bookings.push(booking);
-// };
+  const booking = {
+    flightNum,
+    numPassengers,
+    price,
+  };
+  console.log(booking);
+  bookings.push(booking);
+};
 
-// createBooking('LH123');
-// createBooking('LH123', 1, 800);
-// createBooking('LH123', 2);
-// createBooking('LH123', 5);
-// //leave default num passengers and define the price manueally
-// createBooking('LH123', undefined, 1000);
+createBooking('LH123');
+createBooking('LH123', 1, 800);
+createBooking('LH123', 2);
+createBooking('LH123', 5);
+//leave default num passengers and define the price manueally
+createBooking('LH123', undefined, 1000);
 
 //////////////////////// VALUE VS REFERENCE ///////////////////////////
 
@@ -51,7 +51,7 @@
 // // console.log(flight);
 // // console.log(salem);
 
-// // // is the same as ...
+// /// is the same as ...
 // // const flightNum = flight;
 // // const passenger = salem;
 
@@ -73,7 +73,7 @@
 //   return [first.toUpperCase(), ...others].join(' ');
 // };
 
-// // Higher order function
+// /// Higher order function
 // const transformer = function (str, fn) {
 //   console.log(`Original string: ${str}`);
 //   console.log(`Transformed string: ${fn(str)}`);
@@ -93,7 +93,7 @@
 
 // ['Jonas', 'Martha', 'Adam'].forEach(high5);
 
-//////////////////// FUNCTIONS RETURNING FUNCTIONS /////////////////////
+///////////////////// FUNCTIONS RETURNING FUNCTIONS /////////////////////
 
 // const greet = function (greeting) {
 //   return function (name) {
@@ -111,7 +111,7 @@
 // const greetArrow = greeting => name => console.log(`${greeting} ${name}`);
 // greetArrow('Hi')('Salem');
 
-///////////////////////// THE CALL AND APPLY METHODS //////////////////
+//////////////////////// THE CALL AND APPLY METHODS //////////////////
 
 // const lufthansa = {
 //   airline: 'Lufthansa',
@@ -135,13 +135,13 @@
 //   iataCode: 'EW',
 //   bookings: [],
 // };
-// // copying book method from lufthansa object into book function
+// /// copying book method from lufthansa object into book function
 // const book = lufthansa.book;
 
 // // book now is a regular function, therefore this tkeyword points to undefined
 // // book(23, 'Sarah Williams');
 
-// //Call method help us point this keword to any obeject we want
+// /// Call method help us point this keword to any obeject we want
 // book.call(eurowings, 23, 'Sarah Williams');
 // console.log(eurowings);
 
