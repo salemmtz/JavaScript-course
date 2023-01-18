@@ -485,12 +485,13 @@
 /// 2) Private fields
 /// 3) Public methods
 /// 4) Private methods
+/// there is also te static version
 
 class Account {
   /// 1) Public fields (indstances)
   locale = navigator.language;
 
-  /// 2) Private fields
+  /// 2) Private fields (instances)
   #movements = [];
   #pin;
 
@@ -504,9 +505,10 @@ class Account {
 
     // this.locale = navigator.language;
 
-    console.log(`Thanks for opening an account, ${owner}`);
+    // console.log(`Thanks for opening an account, ${owner}`);
   }
 
+  /// Pubic methods
   /// Public interface of the objcet
   getMovements() {
     return this.#movements;
@@ -514,29 +516,99 @@ class Account {
 
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
 
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
 
+  /// Protected method
   _approveLoan(val) {
     return true;
   }
 
   requestLoan(val) {
+    //if (this._approveLoan(val)) {
     if (this._approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan approved`);
     }
+    return this;
+  }
+
+  /// 4) Private methods - not yet implemented in google chrome
+  #approveLoan(val) {
+    return true;
   }
 }
 
 const acc1 = new Account('Jonas', 'EUR', 1111);
 
-acc1.deposit(250);
-acc1.withdraw(140);
-acc1.requestLoan(1000);
-console.log(acc1.getMovements());
+// acc1.deposit(250);
+// acc1.withdraw(140);
+// acc1.requestLoan(1000);
+// console.log(acc1.getMovements());
 
-console.log(acc1);
+// console.log(acc1);
+
+/// Chining methods
+// acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
+// console.log(acc1.getMovements());
+
+////////////////////////////// Codin challenge #4 //////////////////////////////
+
+class Car {
+  constructor(maker, speed) {
+    this.maker = maker;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.maker} car is going at ${this.speed}`);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.maker} car is going at ${this.speed}`);
+    return this;
+  }
+}
+
+class EV extends Car {
+  #charge;
+
+  constructor(maker, speed, charge) {
+    super(maker, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge *= 0.99;
+    console.log(
+      `${this.maker} going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }`
+    );
+    return this;
+  }
+}
+
+const rivian = new EV('Rivian', 120, 23);
+console.log(rivian);
+
+rivian
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .brake()
+  .chargeBattery(50)
+  .accelerate();
