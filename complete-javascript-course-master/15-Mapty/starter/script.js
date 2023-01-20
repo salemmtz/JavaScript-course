@@ -76,12 +76,18 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 class App {
   #map;
-  #mapZoomLevel = 13;
+  #mapZoomLevel = 15;
   #mapEvent;
   #workouts = [];
 
   constructor() {
+    /// Get user's prosition
     this._getPosition();
+
+    /// Get data from local storage
+    this._getLocalStorage();
+
+    /// Attach event handlers
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
     containerWorkouts.addEventListener('click', this._moveToPoup.bind(this));
@@ -119,6 +125,10 @@ class App {
 
     /// Handling clicks on map
     this.#map.on('click', this._showForm.bind(this));
+
+    this.#workouts.forEach(work => {
+      this._renderWorkoutMarker(work);
+    });
   }
 
   _showForm(mapE) {
@@ -199,6 +209,9 @@ class App {
 
     /// Hide form + clear input fields
     this._hideForm();
+
+    /// Set local storage to all workouts
+    this._setLocalStorage();
   }
 
   _renderWorkoutMarker(workout) {
@@ -278,7 +291,6 @@ class App {
     const workout = this.#workouts.find(
       work => work.id === workoutEl.dataset.id
     );
-    console.log(workout);
 
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
@@ -287,9 +299,52 @@ class App {
       },
     });
 
-    // using public interface
-    workout.click();
+    // workout.click();
+
+    // console.log(workout);
+  }
+
+  _setLocalStorage() {
+    /// local storage API provideed by the browser --> for small ammount of storing
+    /// JSON.stringify converts objects to string
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+  }
+
+  _getLocalStorage() {
+    /// JSON.parse converts strings to JSON
+    const data = JSON.parse(localStorage.getItem('workouts'));
+    // console.log(data);
+
+    if (!data) return;
+
+    this.#workouts = data; /// IMPORTANT /// Objects from local storage wont inherit all the methods that they di before
+
+    this.#workouts.forEach(work => {
+      this._renderWorkout(work);
+    });
+  }
+
+  reset() {
+    localStorage.removeItem('workouts');
+    location.reload(); /// Reloads the page after removing local storage
+    /// location is a big objects that contains a lot of methods in the browser
   }
 }
 
 const app = new App();
+
+////// Additional features ideas //////
+/*
+Abillity to edit a workout
+Ability to delete a workout
+Ability to delete all workouts
+Ability to sort workouts by a certain field (e.g. distance)
+Re-build Running and Cycling objects comming from Local Storage
+More realistic error and confirmation messages
+
+Very hard fetures to do
+Abiility to position the map to show all workouts
+Ability to draw lines and shapes instead of just points
+Geocode location from coordinates
+Display weather data for workout time and place using an API
+*/
