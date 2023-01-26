@@ -201,13 +201,88 @@ const getCountryData = function (country) {
 
 ////////////////////////////// Coding challenge #1 //////////////////////////////
 
-const whereAmI = function (lat, lng) {
-  fetch(`https://geocode.xyz/${lat},${lng}?geoit=xml&auth=your_api_key`).then(
-    resp => console.log(resp)
-  );
+// const whereAmI = function (lat, lng) {
+//   fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+//     .then(resp => {
+//       console.log(resp);
+//       if (!resp.ok)
+//         throw new Error(`Problem with Geocoding API ${resp.status}`);
+
+//       return resp.json();
+//     })
+//     .then(data => {
+//       console.log(`You are in ${data.city}, ${data.country}`);
+
+//       return fetch(`https://restcountries.com/v2/name/${data.country}`);
+//     })
+//     .then(resp => {
+//       if (!resp.ok) throw new Error(`Country not found (${resp.status})`);
+
+//       return resp.json();
+//     })
+//     .then(data => renderCountry(data[0]))
+//     .catch(err => console.error(`${err.message} 💥💥💥`))
+//     .finally((countriesContainer.style.opacity = 1));
+// };
+
+// // Test coordinates
+// whereAmI(51.508, 13.81);
+// whereAmI(19.037, 72.873);
+// whereAmI(-33.933, 18.474);
+
+////////////////////////////// Event loop in practice ////////////////////////////////////
+
+// console.log('test start'); /// 1. top level code will get executed first
+
+// setTimeout(() => console.log('0 sec tiomer'), 0); /// 4. timer will go last, because is in the callback queue
+// ///                                                 Time is not accurate, depends on the heaviness of the promise task
+
+// Promise.resolve('Resolved promise 1').then(res => console.log(res)); /// 2. Promises will get executed after top level code
+// ///                                                                     Microtask queue has priority over callback queue
+
+// /// 3. This promise will get excetuded after first promise
+// Promise.resolve('Rosolve promise 2').then(res => {
+//   for (let i = 0; i < 1000000000; i++) {}
+//   console.log(res);
+// });
+
+// console.log('Test end'); // top level code
+
+////////////////////////////// Building a simple promise ////////////////////////
+
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log('Lottery draw is happing 🔮');
+
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve('You WIN 💰');
+    } else {
+      reject(new Error('You lost your money :('));
+    }
+  }, 2000);
+});
+
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+/// Promisifyng setTimeout
+const wait = function (seconds) {
+  return new Promise(resolve => setTimeout(resolve, seconds * 1000));
 };
 
-// Test coordinates
-whereAmI(51.508, 13.81);
-// 19.037, 72.873
-// -33.933, 18,474
+wait(1)
+  .then(() => {
+    console.log('1 second passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('2 seconds passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('3 seconds passed');
+    return wait(1);
+  })
+  .then(() => console.log('4 seconds passed'));
+
+Promise.resolve('abc').then(x => console.log(x));
+Promise.reject(new Error('Problem')).catch(x => console.error(x));
