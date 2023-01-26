@@ -250,39 +250,131 @@ const getCountryData = function (country) {
 
 ////////////////////////////// Building a simple promise ////////////////////////
 
-const lotteryPromise = new Promise(function (resolve, reject) {
-  console.log('Lottery draw is happing 🔮');
+// const lotteryPromise = new Promise(function (resolve, reject) {
+//   console.log('Lottery draw is happing 🔮');
 
-  setTimeout(function () {
-    if (Math.random() >= 0.5) {
-      resolve('You WIN 💰');
-    } else {
-      reject(new Error('You lost your money :('));
-    }
-  }, 2000);
-});
+//   setTimeout(function () {
+//     if (Math.random() >= 0.5) {
+//       resolve('You WIN 💰');
+//     } else {
+//       reject(new Error('You lost your money :('));
+//     }
+//   }, 2000);
+// });
 
-lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+// lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
 
-/// Promisifyng setTimeout
+// /// Promisifyng setTimeout
 const wait = function (seconds) {
   return new Promise(resolve => setTimeout(resolve, seconds * 1000));
 };
 
-wait(1)
-  .then(() => {
-    console.log('1 second passed');
-    return wait(1);
-  })
-  .then(() => {
-    console.log('2 seconds passed');
-    return wait(1);
-  })
-  .then(() => {
-    console.log('3 seconds passed');
-    return wait(1);
-  })
-  .then(() => console.log('4 seconds passed'));
+// wait(1)
+//   .then(() => {
+//     console.log('1 second passed');
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log('2 seconds passed');
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log('3 seconds passed');
+//     return wait(1);
+//   })
+//   .then(() => console.log('4 seconds passed'));
 
-Promise.resolve('abc').then(x => console.log(x));
-Promise.reject(new Error('Problem')).catch(x => console.error(x));
+// Promise.resolve('abc').then(x => console.log(x));
+// Promise.reject(new Error('Problem')).catch(x => console.error(x));
+
+///////////////////////////////// Promisifyn the geolocation ///////////////////////////
+
+// const getPosition = function () {
+//   return new Promise((resolve, reject) => {
+//     // navigator.geolocation.getCurrentPosition(
+//     //   position => resolve(position),
+//     //   err => reject(err)
+//     // );
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
+
+// // getPosition().then(console.log);
+
+// const whereAmI = function () {
+//   getPosition()
+//     .then(pos => {
+//       const { latitude: lat, longitude: lng } = pos.coords;
+
+//       return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     })
+
+//     .then(resp => {
+//       console.log(resp);
+//       if (!resp.ok)
+//         throw new Error(`Problem with Geocoding API ${resp.status}`);
+
+//       return resp.json();
+//     })
+//     .then(data => {
+//       console.log(`You are in ${data.city}, ${data.country}`);
+
+//       return fetch(`https://restcountries.com/v2/name/${data.country}`);
+//     })
+//     .then(resp => {
+//       if (!resp.ok) throw new Error(`Country not found (${resp.status})`);
+
+//       return resp.json();
+//     })
+//     .then(data => renderCountry(data[0]))
+//     .catch(err => console.error(`${err.message} 💥💥💥`))
+//     .finally((countriesContainer.style.opacity = 1));
+// };
+
+// btn.addEventListener('click', whereAmI);
+
+////////////////////////////// Coding challenge #2 //////////////////////////////
+const imgContainer = document.querySelector('.images');
+let currentImg;
+
+const createImage = imgPath => {
+  return new Promise((resolve, reject) => {
+    const img = document.createElement('img');
+    img.src = imgPath;
+
+    img.addEventListener('load', function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
+
+    img.addEventListener('error', function () {
+      reject(new Error('Image not found'));
+    });
+  });
+};
+
+// createImage('img/img-1.jpg')
+//   .then(img => {
+//     currentImg = img;
+//     console.log('Image 1 loaded');
+
+//     return wait(2);
+//   })
+//   .then(() => {
+//     console.log('2 seconds has passed');
+//     currentImg.style.display = 'none';
+
+//     return createImage('img/img-2.jpg');
+//   })
+//   .then(img => {
+//     currentImg = img;
+//     console.log('Image 2 loaded');
+
+//     return wait(2);
+//   })
+//   .then(() => {
+//     currentImg.style.display = 'none';
+//   })
+//   .catch(err => console.error(err));
+
+/////////////////////////// Consuming promises with async/await /////////////////////
