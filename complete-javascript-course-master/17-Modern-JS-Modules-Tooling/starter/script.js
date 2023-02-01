@@ -17,12 +17,12 @@
 // ///////// When default export, we have to asign a name
 // // import add, { addToCart, totalPrice as price, tq } from './shoppingCart.js';
 // // console.log(price, tq);
-// import add, { cart } from './shoppingCart.js';
-// add('pizza', 2);
-// add('bread', 5);
-// add('apples', 4);
+import add, { cart } from './shoppingCart.js';
+add('pizza', 2);
+add('bread', 5);
+add('apples', 4);
 
-// console.log(cart);
+console.log(cart);
 
 // // console.log('start fetching');
 // // const res = await fetch(`https://jsonplaceholder.typicode.com/posts`); /// Top level await
@@ -78,6 +78,8 @@
 
 // // Import
 // const {addTocart} = require('./shoppingCart.js')
+
+/////////////////////////// Introduction to npm ///////////////
 import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
 
 const state = {
@@ -95,3 +97,7 @@ state.user.loggedIn = false;
 
 console.log(stateClone);
 console.log(stateDeepClone);
+
+import 'core-js/stable';
+
+import 'regenerator-runtime/runtime';
